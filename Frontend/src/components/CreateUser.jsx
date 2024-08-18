@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const UserForm = () => {
   // State to manage form input values
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    age: '',
-    address: '',
-    message: ''
+    name: "",
+    email: "",
+    age: "",
+    address: "",
+    message: "",
   });
 
   // Handle input changes
@@ -15,7 +15,7 @@ const UserForm = () => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -23,7 +23,17 @@ const UserForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here (e.g., sending data to an API)
-    console.log('Form submitted:', formData);
+    console.log(
+      "Form submitted:",
+      `{Name: ${formData.name}, \n Email: ${formData.email}, \n Age: ${formData.age}, \n Address: ${formData.address}, \n Message: ${formData.message}}`
+    );
+    setFormData({
+      name: "",
+      email: "",
+      age: "",
+      address: "",
+      message: "",
+    });
   };
 
   return (
@@ -32,7 +42,12 @@ const UserForm = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Name Field */}
         <div>
-          <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Name</label>
+          <label
+            htmlFor="name"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Name
+          </label>
           <input
             type="text"
             id="name"
@@ -43,10 +58,15 @@ const UserForm = () => {
             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        
+
         {/* Email Field */}
         <div>
-          <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
+          <label
+            htmlFor="email"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Email
+          </label>
           <input
             type="email"
             id="email"
@@ -57,10 +77,15 @@ const UserForm = () => {
             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        
+
         {/* Age Field */}
         <div>
-          <label htmlFor="age" className="block text-gray-700 font-semibold mb-2">Age</label>
+          <label
+            htmlFor="age"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Age
+          </label>
           <input
             type="number"
             id="age"
@@ -71,10 +96,15 @@ const UserForm = () => {
             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        
+
         {/* Address Field */}
         <div>
-          <label htmlFor="address" className="block text-gray-700 font-semibold mb-2">Address</label>
+          <label
+            htmlFor="address"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Address
+          </label>
           <input
             type="text"
             id="address"
@@ -85,10 +115,15 @@ const UserForm = () => {
             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        
+
         {/* Message Field */}
         <div>
-          <label htmlFor="message" className="block text-gray-700 font-semibold mb-2">Message</label>
+          <label
+            htmlFor="message"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Message
+          </label>
           <textarea
             id="message"
             name="message"
@@ -99,7 +134,7 @@ const UserForm = () => {
             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           ></textarea>
         </div>
-        
+
         {/* Submit Button */}
         <div>
           <button
