@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   // State to control mobile menu visibility
@@ -10,13 +10,33 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  // Handle keydown event for search
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      if (event.target.value === "") {
+        alert("Please enter a value to search.");
+        return;
+      }
+      console.log("Search submitted:", event.target.value);
+    }
+  };
   return (
     <nav className="bg-blue-600 p-4">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo */}
-        <Link to='/'>
+        <Link to="/">
           <div className="text-white text-2xl font-bold">User Details</div>
         </Link>
+
+        {/* Search Bar for larger screens */}
+        <div className="hidden md:flex flex-1 mx-4">
+          <input
+            type="search"
+            placeholder="Search..."
+            className="w-full p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onKeyDown={handleKeyDown}
+          />
+        </div>
 
         {/* Links for larger screens */}
         <div className="hidden md:flex space-x-4">
@@ -54,7 +74,13 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className={`md:hidden ${isMobileMenuOpen ? "block" : "hidden"}`}>
-        <div className="flex flex-col space-y-2 mt-2">
+        <div className="flex flex-col space-y-2 mt-2 px-4">
+          <input
+            type="search"
+            placeholder="Search..."
+            className="w-full p-2 mb-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            onKeyDown={handleKeyDown}
+          />
           <Link
             to="/"
             className="block text-white px-4 py-2 hover:bg-blue-700"
