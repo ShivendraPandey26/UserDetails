@@ -3,11 +3,13 @@ import connectToDatabase from "./db/connection.js";
 import { configDotenv } from "dotenv";
 configDotenv();
 import router from "./routes/userDataRoute.js";
+import cors from 'cors';
 
 const app = express();
 
 // Middleware for parsing JSON request bodies
 app.use(express.json());
+app.use(cors());
 
 // Basic route
 app.use("/", router);
