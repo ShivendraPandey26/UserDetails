@@ -21,7 +21,6 @@ const userDetailsSchema = new mongoose.Schema({
   address: {
     type: "string",
     required: true,
-    minlength: 10,
     maxlength: 200,
   },
   message: {
