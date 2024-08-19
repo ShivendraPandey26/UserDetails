@@ -26,7 +26,7 @@ export const handleCreateNewUser = async (req, res) => {
   }
 };
 
-// this fuction is handled Retrieve all users
+// this fuction is handled find all users
 export const handleRetrieveAllUsers = async (req, res) => {
   try {
     const users = await userDetailsModel.find();
@@ -37,7 +37,7 @@ export const handleRetrieveAllUsers = async (req, res) => {
   }
 };
 
-//this fuction is handled Retrieve a user by name
+//this fuction is handled find a user by name
 export const handleRetrieveUsersByName = async (req, res) => {
   const { name } = req.params;
   try {
