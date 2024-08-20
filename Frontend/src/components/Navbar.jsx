@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   // State to control mobile menu visibility
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    // Navigate
+    const navigate = useNavigate();
 
   // Toggle mobile menu visibility
   const toggleMobileMenu = () => {
@@ -11,15 +15,30 @@ const Navbar = () => {
   };
 
   // Handle keydown event for search
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      if (event.target.value === "") {
-        alert("Please enter a value to search.");
-        return;
-      }
-      console.log("Search submitted:", event.target.value);
+const handleKeyDown = async (event) => {
+  if (event.key === "Enter") {
+    const searchText = event.target.value;
+
+    // Check if the search text is empty
+    if (searchText.trim() === "") {
+      alert("Please enter a value to search.");
+      return;
     }
-  };
+
+    try {
+      const response = await fetch(`http://localhost:8000/${searchText}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Search results:", data);
+      navigate('/read')
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  }
+};
+
   return (
     <nav className="bg-blue-600 p-4">
       <div className="container mx-auto flex justify-between items-center">
