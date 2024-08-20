@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserCard = () => {
   // State to manage users and error messages
@@ -130,13 +130,13 @@ const UserCard = () => {
               {/* Action Buttons */}
               <div className="flex justify-end space-x-2">
                 <button
-                  onClick={() => handleEdit(user._id)}
+                  onClick={() => handleEdit(user.name)}
                   className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(user._id)}
+                  onClick={() => handleDelete(user.name)}
                   className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
                 >
                   Delete
