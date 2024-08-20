@@ -14,14 +14,20 @@ app.use(cors());
 // Basic route
 app.use("/", router);
 
-app.listen(process.env.PORT || 3000, async (err) => {
+const startServer = async () => {
   try {
     await connectToDatabase();
-    console.log("Connected to MongoDB");
+    console.log("Successfully connected to MongoDB");
+
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
   } catch (error) {
-    console.error("Failed to connect to MongoDB:", error);
-    process.exit(1); // Exit process if connection fails
+    console.error("Error connecting to MongoDB:", error.message || error);
+    process.exit(1);
   }
-  if (err) console.log(err);
-  console.log(`Server is running on port ${process.env.PORT}`);
-});
+};
+
+// Initialize the server
+startServer();
