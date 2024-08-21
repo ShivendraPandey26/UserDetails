@@ -1,9 +1,11 @@
 import express from "express";
 import connectToDatabase from "./db/connection.js";
-import { configDotenv } from "dotenv";
-configDotenv();
-import router from "./routes/userDataRoute.js";
+import { config } from "dotenv";
+config();
 import cors from 'cors';
+import router from "./routes/userDataRoute.js";
+import { userRouter } from "./routes/userRoute.js";
+
 
 const app = express();
 
@@ -11,8 +13,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Basic route
+// Routes
 app.use("/", router);
+app.use('/users/user', userRouter);
 
 const startServer = async () => {
   try {
