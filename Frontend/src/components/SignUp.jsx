@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SignupForm = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const SignupForm = () => {
           "Content-Type": "application/json",
         },
       });
-  
+
       if (!response.ok) {
         // Parse and log the response to understand the error
         const errorData = await response.json();
@@ -30,7 +31,7 @@ const SignupForm = () => {
         // Handle successful response
         const data = await response.json(); // If you need the response data
         console.log("Form submitted successfully:", data);
-  
+
         // Reset form data
         setFormData({
           userName: "",
@@ -42,7 +43,6 @@ const SignupForm = () => {
       console.error("Failed to submit form:", error.message);
     }
   };
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -115,6 +115,13 @@ const SignupForm = () => {
         >
           Signup
         </button>
+      <div className="text-center text-gray-600 mt-5">
+        Already have an account? <Link 
+        className="font-bold underline hover:text-indigo-500"
+        to={'/login'}>
+        Login
+        </Link>
+      </div>
       </form>
     </div>
   );
