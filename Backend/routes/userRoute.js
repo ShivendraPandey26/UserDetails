@@ -1,5 +1,6 @@
 import { Router } from "express";
 import UserModel from "../models/UserModel.js";
+import { jwtAuthMiddleware, generateToken } from "../Auth/jwt.js";
 
 export const userRouter = Router();
 
@@ -10,7 +11,17 @@ userRouter.get("/", async (req, res) => {
     if (users.length === 0) {
       return res.status(404).json({ error: "No users found" });
     }
-    res.status(200).json(users);
+
+    const payload = {
+      userId: users.id,
+      username: users.userName,
+      email: users.email,
+    };
+    console.log(JSON.stringify(payload));
+    const token = generateToken(payload);
+        console.log("Token is : ", token);
+
+    res.status(200).json({users: users, token: token});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server Error" });
